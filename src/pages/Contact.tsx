@@ -12,7 +12,7 @@ export default function Contact() {
     {
       name: "GitHub",
       icon: <Github size={24} />,
-      url: "https://github.com/1hewarr10r",
+      url: "https://github.com/callmeUmar",
       tag: "Code & projects",
     },
     {
