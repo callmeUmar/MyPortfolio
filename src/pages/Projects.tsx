@@ -1,63 +1,64 @@
-import { Link } from "react-router-dom";
+
 import { PROJECTS } from "../data/projects";
+import { ExternalLink, Github } from "lucide-react";
 
 export default function Projects() {
   const items = PROJECTS;
 
   return (
-    <section className="container" style={{ paddingTop: 18, paddingBottom: 18 }}>
-      <div className="projects-viewport">
-        {items.map((p) => {
-          const cover = p.images?.[0];
+    <div className="grid cols-2">
+      {items.map((p) => {
+        const cover = p.images?.[0];
 
-          return (
-            <article key={p.id} className={`project-card ${p.id}`}>
-              <div
-                className="project-bg"
-                style={{
-                  backgroundImage: cover ? `url('${cover}')` : undefined,
-                  backgroundColor: cover ? undefined : "#1e293b",
-                }}
-                aria-hidden="true"
-              />
-              <div className="project-overlay">
-                <div className="project-content">
-                  <h2 className="project-title">{p.title}</h2>
-                  <p className="project-blurb">{p.blurb}</p>
+        return (
+          <article key={p.id} className={`project-card ${p.id}`}>
+            <div
+              className="project-bg"
+              style={{
+                backgroundImage: cover ? `url('${cover}')` : undefined,
+                backgroundColor: cover ? undefined : "#1e293b",
+                opacity: 0.4
+              }}
+              aria-hidden="true"
+            />
+            <div className="project-overlay">
+              <div className="project-content">
+                <h3 className="project-title">{p.title}</h3>
+                <p className="project-blurb">{p.blurb}</p>
 
-                  <div className="project-actions">
-                    <Link className="btn primary" to={`/projects/${p.id}`}>
-                      Open details
-                    </Link>
+                <div className="project-actions">
+                  {p.links?.demo && (
+                    <a className="btn" href={p.links.demo} target="_blank" rel="noreferrer">
+                      Demo <ExternalLink size={16} style={{ marginLeft: 8 }} />
+                    </a>
+                  )}
+                  {p.links?.more && (
+                    <a
+                      className="btn outline"
+                      href={p.links.more}
+                      target="_blank"
+                      rel="noreferrer"
+                    >
+                      Docs
+                    </a>
+                  )}
 
-                    {p.links?.more && (
-                      <a
-                        className="btn outline"
-                        href={p.links.more}
-                        target="_blank"
-                        rel="noreferrer"
-                      >
-                        More
-                      </a>
-                    )}
-
-                    {p.links?.repo && (
-                      <a
-                        className="btn outline"
-                        href={p.links.repo}
-                        target="_blank"
-                        rel="noreferrer"
-                      >
-                        Repo
-                      </a>
-                    )}
-                  </div>
+                  {p.links?.repo && (
+                    <a
+                      className="btn outline"
+                      href={p.links.repo}
+                      target="_blank"
+                      rel="noreferrer"
+                    >
+                      Code <Github size={16} style={{ marginLeft: 8 }} />
+                    </a>
+                  )}
                 </div>
               </div>
-            </article>
-          );
-        })}
-      </div>
-    </section>
+            </div>
+          </article>
+        );
+      })}
+    </div>
   );
 }
