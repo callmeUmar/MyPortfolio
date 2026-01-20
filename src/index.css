@@ -1,68 +1,483 @@
 :root {
-  font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
-  line-height: 1.5;
-  font-weight: 400;
+  --bg: #D6CABC;
+  /* Milky White */
+  --panel: #ffffff;
+  --text: #1f2937;
+  /* Dark Charcoal */
+  --muted: #6b7280;
+  /* Gray */
+  --brand: #cbbfa8;
+  /* Tan Grey / Gold-ish */
+  --brand-bright: #a19682;
+  /* Darker Tan for accents */
+  --accent: #f3f4f6;
+}
 
-  color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
-  background-color: #242424;
+* {
+  box-sizing: border-box;
+}
 
-  font-synthesis: none;
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+html,
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+  font-family: 'Courier New', Courier, monospace;
 }
 
 a {
-  font-weight: 500;
-  color: #646cff;
-  text-decoration: inherit;
+  color: inherit;
+  text-decoration: none;
+  transition: color 0.3s;
 }
+
 a:hover {
-  color: #535bf2;
+  color: var(--brand-bright);
 }
 
-body {
-  margin: 0;
-  display: flex;
-  place-items: center;
-  min-width: 320px;
-  min-height: 100vh;
-}
-
-h1 {
-  font-size: 3.2em;
-  line-height: 1.1;
+img {
+  max-width: 100%;
+  display: block;
 }
 
 button {
-  border-radius: 8px;
-  border: 1px solid transparent;
-  padding: 0.6em 1.2em;
-  font-size: 1em;
-  font-weight: 500;
-  font-family: inherit;
-  background-color: #1a1a1a;
   cursor: pointer;
-  transition: border-color 0.25s;
-}
-button:hover {
-  border-color: #646cff;
-}
-button:focus,
-button:focus-visible {
-  outline: 4px auto -webkit-focus-ring-color;
 }
 
-@media (prefers-color-scheme: light) {
-  :root {
-    color: #213547;
-    background-color: #ffffff;
+/* Scroll Behavior */
+html {
+  scroll-behavior: smooth;
+}
+
+/* layout */
+.container {
+  max-width: none;
+  margin: 0;
+  padding: 0;
+  position: relative;
+  z-index: 10;
+}
+
+.section {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 60px 20px;
+  border-bottom: none;
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+  position: relative;
+  z-index: 10;
+}
+
+.section.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.title {
+  font-size: 32px;
+  margin: 0 0 20px;
+  color: #374151;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  text-align: center;
+}
+
+.muted {
+  color: var(--muted);
+}
+
+.hr {
+  height: 1px;
+  background: rgba(0, 0, 0, 0.1);
+  margin: 20px 0;
+}
+
+/* header / nav - FLOATING RIGHT SIDEBAR */
+.header {
+  position: fixed;
+  top: 50%;
+  right: 20px;
+  left: auto;
+  transform: translateY(-50%);
+  z-index: 100;
+  background: transparent;
+  backdrop-filter: none;
+  border: none;
+}
+
+.header-inner {
+  flex-direction: column;
+  padding: 0;
+  align-items: flex-end;
+}
+
+.row {
+  display: none;
+}
+
+/* nav */
+.nav {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  align-items: flex-end;
+}
+
+.nav a {
+  opacity: 0.6;
+  margin-left: 0;
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  padding: 5px 10px;
+  background: rgba(255, 255, 255, 0.6);
+  border-right: 2px solid transparent;
+  transition: all 0.3s;
+  color: var(--text);
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+}
+
+.nav a:hover,
+.nav a:active {
+  opacity: 1;
+  color: #000;
+  border-right-color: var(--brand);
+  padding-right: 15px;
+  background: #fff;
+}
+
+/* === Buttons === */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 12px 24px;
+  border-radius: 6px;
+  /* Slight roundness */
+  font-weight: 600;
+  letter-spacing: 1px;
+  transition: all 0.3s ease;
+  text-decoration: none;
+  cursor: pointer;
+  border: 1px solid var(--text);
+  background: transparent;
+  color: var(--text);
+  text-transform: uppercase;
+}
+
+.btn:hover {
+  background: var(--text);
+  color: #fff;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+/* cards & grids */
+.grid {
+  display: grid;
+  gap: 40px;
+}
+
+.grid.cols-2 {
+  grid-template-columns: repeat(2, 1fr);
+}
+
+.grid.cols-3 {
+  grid-template-columns: repeat(3, 1fr);
+}
+
+@media (max-width:900px) {
+
+  .grid.cols-3,
+  .grid.cols-2 {
+    grid-template-columns: 1fr;
   }
-  a:hover {
-    color: #747bff;
+}
+
+.card {
+  background: rgba(255, 255, 255, 0.6);
+  border: 1px solid rgba(0, 0, 0, 0.05);
+  padding: 40px;
+  border-radius: 24px;
+  transition: transform 0.3s, box-shadow 0.3s;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.03);
+  backdrop-filter: blur(10px);
+}
+
+.card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.08);
+  border-color: var(--brand);
+  background: #fff;
+}
+
+.card h3 {
+  margin: 0 0 16px;
+  font-size: 24px;
+  color: var(--text);
+  padding-left: 10px;
+  border-left: 3px solid var(--brand);
+}
+
+.card p {
+  padding-left: 14px;
+  line-height: 1.6;
+}
+
+.badge {
+  font: 600 12px/1 'Courier New', monospace;
+  padding: 6px 10px;
+  background: rgba(0, 0, 0, 0.05);
+  border: 1px solid var(--text);
+  color: var(--text);
+  margin-left: auto;
+}
+
+/* footer */
+.footer {
+  opacity: 1;
+  font-size: 12px;
+  padding: 40px 0;
+  text-align: center;
+  border-top: none;
+  margin-top: 40px;
+  color: var(--muted);
+}
+
+/* helpers */
+.spread {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+}
+
+.project-list {
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+  /* Space between list items */
+}
+
+.project-card {
+  padding: 10px;
+}
+
+/* ===== HERO (Split Layout - LOCKED / NO SHIFT) ===== */
+.hero-section {
+  min-height: 100vh;
+  width: 100%;
+  display: flex;
+  align-items: stretch;
+  justify-content: flex-start;
+  position: relative;
+  overflow-y: hidden;
+  overflow-x: visible;
+  background: transparent;
+  padding: 0;
+  gap: 0;
+  transform: none !important;
+  opacity: 1 !important;
+}
+
+.hero-overlay {
+  display: none;
+}
+
+/* ✅ LOCK columns so text appearing doesn't resize and shift image */
+.hero-split-left {
+  flex: 0 0 100%;
+  /* Image takes full width of container logic but visual sizing is absolute/fixed */
+  min-width: 0;
+}
+
+.hero-split-right {
+  /* Text overlays image */
+  position: absolute;
+  top: 60%;
+  left: 22vw;
+  /* Moved left ~100px from 28vw */
+  transform: translateY(-50%);
+  z-index: 20;
+  width: auto;
+  min-width: 400px;
+  /* Ensure text creates a block */
+}
+
+/* Left side anchors the image */
+.hero-split-left {
+  height: auto;
+  display: flex;
+  justify-content: flex-start;
+  align-items: flex-end;
+  position: relative;
+  overflow: visible;
+}
+
+.hero-split-right {
+  /* Previously shared rule, overriding above specific rule if not careful, but splitting them is cleaner. 
+     Since I redefined .hero-split-right above, I will just remove this block or merge it. 
+     Let's clean up the previous definition. */
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+  text-align: left;
+  padding: 0;
+  overflow: visible;
+}
+
+/* ✅ Photo Styling (KEEP SIZE) + LOCK POSITION */
+.hero-photo-split {
+  height: 100vh;
+  width: 60vw;
+  max-width: 900px;
+  border-radius: 0;
+  object-fit: contain;
+  /* Ensure full visibility (no cropping) */
+  object-position: left bottom;
+  /* Anchor to bottom so feet aren't cut */
+
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 1;
+  /* Ensure strict corner placement */
+  margin: 0;
+  padding: 0;
+}
+
+.hero-name {
+  font-size: 72px;
+  line-height: 1.1;
+  font-weight: 800;
+  color: #1f2937;
+  /* Allow wrapping and respect newline */
+  white-space: pre-wrap;
+  word-wrap: break-word;
+  margin-bottom: 10px;
+  text-shadow: none;
+  display: inline-block;
+  padding-top: 80px;
+  padding-left: 0;
+  /* Align with subtitle */
+}
+
+.cursor {
+  display: inline-block;
+  width: 15px;
+  background-color: var(--brand);
+  animation: blink 1s infinite;
+}
+
+@keyframes blink {
+
+  0%,
+  100% {
+    opacity: 1;
   }
-  button {
-    background-color: #f9f9f9;
+
+  50% {
+    opacity: 0;
   }
+}
+
+.hero-subtitle {
+  color: #6b7280;
+  font-size: 1.5rem;
+  letter-spacing: 3px;
+  margin-top: 0;
+  background: transparent;
+  padding: 0;
+  display: block;
+  text-shadow: none;
+  backdrop-filter: none;
+  text-transform: uppercase;
+  margin-bottom: 40px;
+  padding-left: 80px;
+}
+
+/* Mobile Responsive */
+@media (max-width: 900px) {
+  .hero-section {
+    flex-direction: column;
+    text-align: center;
+    gap: 30px;
+    padding: 100px 20px 40px;
+    overflow: visible;
+  }
+
+  .hero-split-left,
+  .hero-split-right {
+    flex: none;
+    width: 100%;
+  }
+
+  .hero-split-left {
+    height: 50vh;
+    justify-content: center;
+    align-items: flex-end;
+  }
+
+  .hero-split-right {
+    align-items: center;
+    text-align: center;
+    padding: 0;
+    background: transparent;
+  }
+
+  /* In mobile, stop absolute to avoid weird overlaps */
+  .hero-photo-split {
+    position: relative;
+    left: auto;
+    bottom: auto;
+    width: 100%;
+    height: 100%;
+    max-width: none;
+    border-radius: 20px;
+  }
+
+  .hero-name {
+    font-size: 42px;
+  }
+}
+
+/* ===== Project, Experience, Hobby Tweaks ===== */
+.project-card,
+.exp-item,
+.hobby-card,
+.contact-card {
+  background: rgba(255, 255, 255, 0.7);
+  border: 1px solid rgba(0, 0, 0, 0.05);
+  border-radius: 16px;
+  /* Smoother rounded corners */
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.03);
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  /* Smooth spring transition */
+}
+
+.project-card:hover,
+.exp-item:hover,
+.hobby-card:hover,
+.contact-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+  background: rgba(255, 255, 255, 0.95);
+}
+
+.exp-company {
+  color: var(--text);
+  font-weight: bold;
+}
+
+.chip {
+  background: rgba(0, 0, 0, 0.05);
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  color: var(--text);
+  border-radius: 20px;
+  /* Capsule shape */
+  padding: 4px 12px;
 }
