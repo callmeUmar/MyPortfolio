@@ -24,7 +24,8 @@ export const PROJECTS: Project[] = [
     title: "PolyPredictor-Kit",
     blurb: "🥇 QuackHacks 2025 Polymarket Track winner — PolyPredictor-Kit",
     links: {
-      repo: "https://devpost.com/software/poly-predictor-kit?ref_content=user-portfolio&ref_feature=in_progress",
+      repo: "https://github.com/raimbekalish/Poly_Predictor_Kit",
+      demo: "https://devpost.com/software/poly-predictor-kit",
     },
     highlight:
       "1st place on the QuackHacks 2025 Polymarket track. This toolkit automates real Polymarket analysis end-to-end. It includes: " +
@@ -33,8 +34,21 @@ export const PROJECTS: Project[] = [
       "• Steamroller Detector – Identifies asymmetric 'steamroller' markets using liquidity, implied probabilities, wipeout factor, and risk structure. " +
       "Built as a Chrome extension with local Flask services across ports 5000/5001/5002, combining Gamma API, Gemini API, custom ML models, and automated scraping. The goal is to eliminate manual scraping and slow UI, giving instant clean insights.",
     images: [IMG("PolyPredictor-Kit", 'PolyPredictor-kit.jpg'),
-             IMG("PolyPredictor-Kit", 'PolyPredictor-kit2.jpg')
+    IMG("PolyPredictor-Kit", 'PolyPredictor-kit2.jpg')
     ],
+  },
+
+  {
+    id: "prompt-lock",
+    title: "PromptLock",
+    blurb: "Budget-Guaranteed Context Compression + Smart Model Routing",
+    highlight:
+      "PromptLock ensures your prompts always fit within a strict token limit (2K / 4K / 8K / 16K) while automatically routing them to the most cost-effective LLM for the task. Instead of truncating important context or overpaying for large models, PromptLock semantically compresses logs, code, diffs, and docs, prioritizes what matters for your task, and guarantees the result fits your budget. After compression, it intelligently selects the best model—so simple tasks stay cheap and complex ones stay accurate. The result: fewer lost errors, faster workflows, and up to 80% lower LLM costs—with zero manual prompt tuning.",
+    links: {
+      repo: "https://github.com/abdirahmanbm01/nexhacks",
+      demo: "https://devpost.com/software/promptlock?ref_content=my-projects-tab&ref_feature=my_projects",
+    },
+    images: [],
   },
 
   {
