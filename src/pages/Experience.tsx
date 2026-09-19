@@ -4,6 +4,13 @@ import Footer from '../components/Footer';
 
 const experiences = [
   {
+    role: "Machine Learning Engineer Intern",
+    company: "Atlabyte",
+    location: "Remote",
+    date: "May. 2026 – Aug. 2026",
+    description: "Researching reinforcement learning and post-training techniques that make models genuinely reliable instead of just benchmark-friendly. Improved model stability and performance by 15–25% through systematic optimization, built evaluation frameworks and benchmarking pipelines that measure generalization and consistency across tasks, and cut output variance by 20% through structured fine-tuning and iterative experimentation."
+  },
+  {
     role: "AI Researcher (RL & Post-Training)",
     company: "Algoverse",
     location: "Remote",
