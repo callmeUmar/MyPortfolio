@@ -66,9 +66,7 @@ body {
 }
 
 .nav-links {
-  list-style: none;
   display: flex;
-  gap: 30px;
 }
 
 .nav-links a {
@@ -85,8 +83,12 @@ body {
 }
 
 .nav-toggle {
-  display: none; /* hidden on desktop; shown in the max-width: 1024px query below */
+  display: flex;
+  position: absolute;
+  right: 20px; /* move it left/right */
+  top: 20px;
 }
+
 
 /* Hero Section */
 .hero {
@@ -208,7 +210,7 @@ body {
 
   .navbar {
     padding: 20px;
-    position: relative;
+    flex-wrap: wrap;
   }
 
   .nav-toggle {
@@ -229,30 +231,29 @@ body {
 
   .nav-links {
     display: none;
-    position: absolute;
-    top: 100%;
-    right: 20px;
-    flex-direction: column;
-    gap: 0;
-    background-color: var(--bg-color);
-    border: 1px solid var(--gold);
-    border-radius: 6px;
-    padding: 10px 0;
-    min-width: 200px;
-    z-index: 20;
   }
 
   .nav-links-open {
     display: flex;
+    flex-basis: 100%;
+    flex-direction: row;
+    gap: 24px;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    margin-top: 16px;
+    padding-top: 16px;
+    border-top: 1px solid rgba(200, 150, 62, 0.3);
   }
 
   .nav-links li {
     list-style: none;
+    flex-shrink: 0;
   }
 
   .nav-links a {
     display: block;
-    padding: 12px 20px;
+    padding: 8px 4px;
+    white-space: nowrap;
   }
 
   .gold-line {
