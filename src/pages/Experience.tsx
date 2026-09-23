@@ -8,7 +8,7 @@ const experiences = [
     company: "Atlabyte",
     location: "Remote",
     date: "May. 2026 – Aug. 2026",
-    description: "Researching reinforcement learning and post-training techniques that make models genuinely reliable instead of just benchmark-friendly. Improved model stability and performance by 15–25% through systematic optimization, built evaluation frameworks and benchmarking pipelines that measure generalization and consistency across tasks, and cut output variance by 20% through structured fine-tuning and iterative experimentation."
+    description: "Developed and evaluated LLM-powered AI agents, testing 1,000+ model responses across multi-turn customer interactions and identifying failure cases in reasoning, hallucination, context retention, and response quality.  Optimized prompt engineering and agent workflows, contributing to an estimated 20–30% improvement in response consistency across internal evaluation scenarios. Built Python-based LLM evaluation and data-processing pipelines, reducing manual testing time by approximately 40% and accelerating experimentation with Generative AI / NLP workflows. Integrated LLM APIs, retrieval pipelines, embeddings, and REST APIs into ATLA AI workflows, supporting automated customer-service and business-process use cases. Analyzed model outputs and edge cases across hundreds of conversations, helping improve accuracy, reliability, latency, and production readiness of AI-agent systems."
   },
   {
     role: "AI Researcher (RL & Post-Training)",

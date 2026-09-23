@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 
 interface PageLayoutProps {
@@ -22,17 +22,28 @@ export default function PageLayout({
   imageStyle,
   children,
 }: PageLayoutProps) {
+  const [menuOpen, setMenuOpen] = useState(false);
+
   return (
     <div className="landing-container" style={{ backgroundColor: bgColor }}>
       <nav className="navbar">
         <div className="logo">Umar Turdumambetov</div>
-        <ul className="nav-links">
-          <li><Link to="/">HOME</Link></li>
-          <li><Link to="/projects">PROJECTS</Link></li>
-          <li><Link to="/experience">EXPERIENCE</Link></li>
-          <li><Link to="/hobbies">HOBBIES</Link></li>
-          <li><Link to="/cv">CV</Link></li>
-          <li><Link to="/contact">CONTACT</Link></li>
+        <button
+          type="button"
+          className="nav-toggle"
+          aria-label={menuOpen ? 'Close menu' : 'Open menu'}
+          aria-expanded={menuOpen}
+          onClick={() => setMenuOpen((open) => !open)}
+        >
+          {menuOpen ? '✕' : '☰'}
+        </button>
+        <ul className={`nav-links${menuOpen ? ' nav-links-open' : ''}`}>
+          <li><Link to="/" onClick={() => setMenuOpen(false)}>HOME</Link></li>
+          <li><Link to="/projects" onClick={() => setMenuOpen(false)}>PROJECTS</Link></li>
+          <li><Link to="/experience" onClick={() => setMenuOpen(false)}>EXPERIENCE</Link></li>
+          <li><Link to="/hobbies" onClick={() => setMenuOpen(false)}>HOBBIES</Link></li>
+          <li><Link to="/cv" onClick={() => setMenuOpen(false)}>CV</Link></li>
+          <li><Link to="/contact" onClick={() => setMenuOpen(false)}>CONTACT</Link></li>
         </ul>
       </nav>
 
