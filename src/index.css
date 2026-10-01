@@ -67,6 +67,8 @@ body {
 
 .nav-links {
   display: flex;
+  list-style: none;
+  gap: 30px;
 }
 
 .nav-links a {
@@ -83,7 +85,7 @@ body {
 }
 
 .nav-toggle {
-  display: flex;
+  display: none; /* hidden on desktop; shown in the max-width: 1024px query below */
   position: absolute;
   right: 20px; /* move it left/right */
   top: 20px;
