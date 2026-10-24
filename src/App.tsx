@@ -1,24 +1,32 @@
 import React from 'react';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { createBrowserRouter, Outlet, RouterProvider, ScrollRestoration } from 'react-router-dom';
 import Home from './pages/Home';
-import Projects from './pages/Projects';
-import Experience from './pages/Experience';
-import Hobbies from './pages/Hobbies';
-import CV from './pages/CV';
-import Contact from './pages/Contact';
-import './index.css';
+import ProjectPage from './pages/ProjectPage';
+
+// Data router: needed for <Link viewTransition>, which wraps navigation in
+// document.startViewTransition() and replays it on browser back. Browsers
+// without the View Transitions API simply navigate normally.
+function Layout() {
+  return (
+    <>
+      {/* Top of page on forward navigation, restored position on back — applied
+          before the new view-transition snapshot is taken. */}
+      <ScrollRestoration />
+      <Outlet />
+    </>
+  );
+}
+
+const router = createBrowserRouter([
+  {
+    element: <Layout />,
+    children: [
+      { path: '/', element: <Home /> },
+      { path: '/projects/:slug', element: <ProjectPage /> },
+    ],
+  },
+]);
 
 export default function App() {
-  return (
-    <Router>
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/projects" element={<Projects />} />
-        <Route path="/experience" element={<Experience />} />
-        <Route path="/hobbies" element={<Hobbies />} />
-        <Route path="/cv" element={<CV />} />
-        <Route path="/contact" element={<Contact />} />
-      </Routes>
-    </Router>
-  );
+  return <RouterProvider router={router} />;
 }

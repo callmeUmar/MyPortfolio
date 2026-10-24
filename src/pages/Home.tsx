@@ -1,28 +1,105 @@
-import React from 'react';
-import PageLayout from '../components/PageLayout';
-import Footer from '../components/Footer';
+import React, { useState } from 'react';
+import { PROJECTS } from '../data/projects';
+import { EXPERIENCE, PUBLICATIONS, CONTACTS } from '../data/site';
+import ProjectRow from '../components/ProjectRow';
 
 export default function Home() {
+  const [openProject, setOpenProject] = useState<string | null>(null);
+
   return (
-    <PageLayout
-      title="Home"
-      subtitle="Deeper look of who I am"
-      description="Welcome to my corner of the internet. If you're here, you're probably interested in me, my work, or my application — and that already means a lot. Feel free to wander. Stay as long as you'd like. And if you have anything to say, my email is always open."
-      bgText="PIXEL MINIMAL"
-      statueSrc="/statue-home.png"
-      bgColor="#212121"
-    >
-      <section className="summary-section">
-        <h2 className="summary-title">About Me</h2>
-        <div className="summary-content" style={{ display: 'flex', flexDirection: 'column', gap: '1rem', lineHeight: '1.8' }}>
-          <p>I'm a Machine Learning and Backend Engineer building production-grade systems for real-time data processing, probabilistic modeling, and decision pipelines. I have hands-on experience deploying PyTorch models, designing FastAPI microservices, and optimizing low-latency pipelines for scalable inference. My focus is on high-impact systems that turn raw data into reliable, measurable outcomes — the kind of work where the engineering around the model matters as much as the model itself.</p>
-          <p>Currently, I'm a CS student at Bellevue College, an AI Researcher at Algoverse working on reinforcement learning and post-training, and a builder who's shipped end-to-end ML projects, won a few hackathons, and spent enough late nights debugging production services to know what holds up and what doesn't.</p>
-          <p>Beyond the technical side, a few things shape how I work.</p>
-          <p>I was raised with a strong sense of justice, and out of that grew something I really care about: honesty. I don't just appreciate it — I love it. The direct version of anything is almost always more useful than the polished one, and I try to give it back the same way I want to receive it.</p>
-          <p>I love working with people who take responsibility seriously, especially the ones who go a little too hard at the work — the ones who care more than they technically need to. Those are my favorite people to build with, and they're usually the ones I learn the most from.</p>
+    <main className="home-page">
+      <header className="header-row">
+        <h1>Umar Turdumambetov</h1>
+        <p className="header-meta">
+          <span>Computer Science and Math, Whitman College</span>
+          <span className="year">Expected 2028</span>
+        </p>
+      </header>
+
+      <section className="grid-section">
+        <div className="section-label">
+          <span className="section-number">(01)</span> Experience
+        </div>
+        <div className="section-content">
+          <ul className="line-list">
+            {EXPERIENCE.map((item) => (
+              <li key={item.role + item.company}>
+                <span>
+                  {item.url ? (
+                    <a href={item.url} target="_blank" rel="noopener noreferrer">
+                      {item.role} — {item.company}
+                    </a>
+                  ) : (
+                    <>{item.role} — {item.company}</>
+                  )}
+                </span>
+                <span className="year">{item.year}</span>
+              </li>
+            ))}
+          </ul>
         </div>
       </section>
-      <Footer />
-    </PageLayout>
+
+      <section className="grid-section">
+        <div className="section-label">
+          <span className="section-number">(02)</span> Projects
+        </div>
+        <div className="section-content">
+          <div className="project-list">
+            {PROJECTS.map((project) => (
+              <ProjectRow
+                key={project.slug}
+                project={project}
+                open={openProject === project.slug}
+                onToggle={() =>
+                  setOpenProject((current) => (current === project.slug ? null : project.slug))
+                }
+              />
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="grid-section">
+        <div className="section-label">
+          <span className="section-number">(03)</span> Publications
+        </div>
+        <div className="section-content">
+          <ul className="line-list">
+            {PUBLICATIONS.map((item) => (
+              <li key={item.title}>
+                <span>
+                  {item.url ? (
+                    <a href={item.url} target="_blank" rel="noopener noreferrer">
+                      {item.title}
+                    </a>
+                  ) : (
+                    item.title
+                  )}
+                </span>
+                <span className="year">{item.year}</span>
+              </li>
+            ))}
+          </ul>
+        </div>
+      </section>
+
+      <section className="grid-section">
+        <div className="section-label">
+          <span className="section-number">(04)</span> Contact
+        </div>
+        <div className="section-content">
+          <ul className="contact-list">
+            {CONTACTS.map((contact) => (
+              <li key={contact.name}>
+                <a href={contact.url} target="_blank" rel="noopener noreferrer">
+                  {contact.name}
+                </a>
+              </li>
+            ))}
+          </ul>
+        </div>
+      </section>
+    </main>
   );
 }
