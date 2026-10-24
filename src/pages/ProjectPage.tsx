@@ -243,6 +243,9 @@ export default function ProjectPage() {
           {project.links.devpost && (
             <a href={project.links.devpost} target="_blank" rel="noopener noreferrer">Devpost</a>
           )}
+          {project.links.showcase && (
+            <a href={project.links.showcase} target="_blank" rel="noopener noreferrer">CodeDay Showcase</a>
+          )}
           {project.links.drive && (
             <a href={project.links.drive} target="_blank" rel="noopener noreferrer">Files</a>
           )}

@@ -3,15 +3,7 @@ import { Link, useViewTransitionState } from 'react-router-dom';
 import type { Project } from '../data/projects';
 import GradientThumb from './GradientThumb';
 
-type Props = {
-  project: Project;
-  open: boolean;
-  onToggle: () => void;
-};
-
-export default function ProjectRow({ project, open, onToggle }: Props) {
-  const panelId = `project-panel-${project.slug}`;
-  const buttonId = `project-button-${project.slug}`;
+export default function ProjectRow({ project }: { project: Project }) {
   const href = `/projects/${project.slug}`;
 
   // True only while a view transition to or from this project's page is running,
@@ -19,44 +11,25 @@ export default function ProjectRow({ project, open, onToggle }: Props) {
   const transitioning = useViewTransitionState(href);
 
   return (
-    <div className="project-row">
-      <button
-        type="button"
-        id={buttonId}
-        className="project-row-trigger"
-        aria-expanded={open}
-        aria-controls={panelId}
-        onClick={onToggle}
+    <li className="home-item home-project">
+      <Link
+        to={href}
+        viewTransition
+        className="home-item-title"
+        style={{ viewTransitionName: transitioning ? `title-${project.slug}` : undefined } as React.CSSProperties}
       >
-        <span
-          className="project-row-name"
-          style={{ viewTransitionName: transitioning ? `title-${project.slug}` : undefined } as React.CSSProperties}
-        >
-          {project.name}
-        </span>
+        {project.name}
+      </Link>
+      <Link to={href} viewTransition className="home-project-art" tabIndex={-1} aria-hidden="true">
         <GradientThumb
           palette={project.palette}
-          className="project-row-thumb"
           transitionName={transitioning ? `thumb-${project.slug}` : undefined}
         />
-      </button>
-      <div
-        id={panelId}
-        role="region"
-        aria-labelledby={buttonId}
-        className="project-row-panel"
-        data-open={open}
-      >
-        <div className="project-row-panel-inner">
-          <p className="project-row-summary">{project.blurb}</p>
-          {project.stack.length > 0 && (
-            <p className="project-row-stack">{project.stack.join(' · ')}</p>
-          )}
-          <Link to={href} viewTransition className="project-row-link" tabIndex={open ? 0 : -1}>
-            Read breakdown <span className="arrow" aria-hidden="true">→</span>
-          </Link>
-        </div>
+      </Link>
+      {/* one-line description: revealed on hover/focus, always shown on touch screens */}
+      <div className="home-project-detail">
+        <p>{project.blurb}</p>
       </div>
-    </div>
+    </li>
   );
 }

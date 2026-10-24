@@ -24,6 +24,8 @@ export type ProjectLinks = {
   github?: string;
   live?: string;
   devpost?: string;
+  /** CodeDay showcase page */
+  showcase?: string;
   drive?: string;
 };
 

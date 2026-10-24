@@ -8,7 +8,7 @@ const project: Project = {
   stack: ['Python', 'Google Gemini', 'Stability AI', "Ren'Py", 'JSON pipelines'],
   links: {
     github: 'https://github.com/Vimpel-O-O/AI_Visual_Novel_Creator',
-    devpost: 'https://showcase.codeday.org/project/cmhgqspw91903j5my04z26yk6',
+    showcase: 'https://showcase.codeday.org/project/cmhgqspw91903j5my04z26yk6',
   },
   palette: ['#fbd7d0', '#f5c9dd', '#fde8d0'],
   category: 'Category — TBD',

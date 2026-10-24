@@ -6,7 +6,9 @@ const project: Project = {
   blurb: 'A LeetCode-style practice site for the Rubik’s cube, where every puzzle and solution is machine-verified.',
   subtitle: 'Practice problems for the Rubik’s cube, where nothing is trusted from memory.',
   stack: ['TypeScript', 'React', 'three.js', 'Web Workers'],
-  links: {},
+  links: {
+    github: 'https://github.com/callmeUmar/CubicsCode',
+  },
   palette: ['#cfe8e3', '#a9c9e0', '#e3d9f0'],
   category: 'Project',
   published: '2026',

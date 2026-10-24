@@ -9,6 +9,7 @@ const project: Project = {
   links: {
     github: 'https://github.com/abdirahmanbm01/nexhacks',
     live: 'https://promptlock-nexhacks.leanmcp.app/mcp',
+    devpost: 'https://devpost.com/software/promptlock',
   },
   palette: ['#eed7a3', '#dfc488', '#f2e4c2'],
   category: 'Category — TBD',
